@@ -22,13 +22,13 @@ export default function FormulaireVisaDeces() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 "> 
       <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-2xl ">
-        <h2 className="text-2xl font-extrabold text-center mb-6 text-gray-800 ">
+        <h2 className="text-2xl font-extrabold text-center mb-6 text-[#76bc21] ">
           Décision de Secours au Décès
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 font-medium mb-1 ">Numéro de Visa :</label>
+            <label className="block text-[#76bc21] font-medium mb-1 ">Numéro de Visa :</label>
             <input
               type="text"
               name="numeroVisa"
@@ -41,7 +41,7 @@ export default function FormulaireVisaDeces() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Date du Visa :</label>
+            <label className="block text-[#76bc21] font-medium mb-1">Date du Visa :</label>
             <input
               type="date"
               name="dateVisa"
@@ -53,7 +53,7 @@ export default function FormulaireVisaDeces() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Délégué Régional :</label>
+            <label className="block text-[#76bc21] font-medium mb-1">Délégué Régional :</label>
             <input
               type="text"
               name="delegue"
@@ -65,7 +65,7 @@ export default function FormulaireVisaDeces() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Nom du Veuf / Veuve :</label>
+            <label className="block text-[#76bc21] font-medium mb-1">Nom du Bénéficiaire :</label>
             <input
               type="text"
               name="nomVeufVeuve"
@@ -78,7 +78,7 @@ export default function FormulaireVisaDeces() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Nom du Défunt :</label>
+            <label className="block text-[#76bc21] font-medium mb-1">Nom du Défunt :</label>
             <input
               type="text"
               name="nomDefunt"
@@ -92,9 +92,9 @@ export default function FormulaireVisaDeces() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-[#76bc21] text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
           >
-            Enregistrer le Visa
+            Enregistrer
           </button>
         </form>
       </div>

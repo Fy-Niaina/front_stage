@@ -29,7 +29,7 @@ export default function DecisionDecesForm() {
   return (
     <div className="w-full p-6 bg-gray-50 min-h-screen">
         <header className="mb-6">
-        <h1 className="text-2xl font-semibold">Décision d'attribution de secours au décès Pensions</h1>
+        <h1 className="text-2xl font-extrabold">Décision d'attribution de secours au décès Pensions</h1>
         <p className='text-[#76bc21]'><Link to="/decisions">Aller à Soldes</Link></p>
       </header>
       <div className="max-w-3xl mx-auto bg-white border border-[#76bc21]/30 rounded-2xl shadow-md overflow-hidden">
@@ -62,7 +62,7 @@ export default function DecisionDecesForm() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               <FiUser className="inline-block w-4 h-4 mr-2 text-[#76bc21]" />
-              Nom du Veuf / de la Veuve
+              Nom du Bénéficiaire
             </label>
             <input
               type="text"
@@ -149,7 +149,7 @@ export default function DecisionDecesForm() {
               className="flex items-center gap-2 bg-[#76bc21] text-white px-6 py-3 rounded-lg hover:bg-[#68a71d] transition-all font-medium"
             >
               <FiSave className="w-5 h-5" />
-              Enregistrer la Décision
+              Enregistrer 
             </button>
           </div>
         </form>

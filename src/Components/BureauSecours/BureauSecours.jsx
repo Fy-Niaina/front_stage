@@ -81,6 +81,7 @@ export default function DecisionSecours() {
             <label className="flex flex-col">
               <span className="text-sm mb-1" style={{ color: textColor }}>Date de la décision</span>
               <input
+                type="date"
                 value={decisionDate}
                 onChange={(e) => setDecisionDate(e.target.value)}
                 className="p-2 border rounded"
@@ -90,7 +91,7 @@ export default function DecisionSecours() {
 
           <div className="grid sm:grid-cols-2 gap-4">
             <label className="flex flex-col">
-              <span className="text-sm mb-1" style={{ color: textColor }}>Nom du veuf / veuve</span>
+              <span className="text-sm mb-1" style={{ color: textColor }}>Nom du Bénéficiaire</span>
               <input
                 value={decedentName}
                 onChange={(e) => setDecedentName(e.target.value)}
@@ -124,13 +125,6 @@ export default function DecisionSecours() {
 
         {/* Actions */}
         <footer className="mt-6 flex gap-3 justify-end">
-          <button
-            onClick={handleReset}
-            className="px-4 py-2 rounded shadow-sm border"
-          >
-            Réinitialiser
-          </button>
-
           <button
             onClick={handlePrint}
             className="px-4 py-2 rounded shadow-sm border"

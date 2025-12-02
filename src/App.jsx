@@ -12,6 +12,11 @@ import DecisionDecesForm from './Components/ProjetDecision/Pension';
 import { statsData } from './Components/Data/Data';
 import ControleFinancier from './Components/ControleFinancier/ControleFinancier';
 import DecisionSecours from './Components/BureauSecours/BureauSecours';
+import FormulaireVisaDeces from './Components/ControleFinancier/ControleFinancier';
+import FormulaireDecisionDeces from './Components/ProjetDecision/Solde';
+import ArchiverPage from './Components/Archive/Archive';
+import DeconnexionApp from './Components/Deconnexion/Deconnexion';
+import DecomptePage from './Components/Decompte/Decompte';
 
 // Page Dashboard
 function DashboardPage({ onMenuToggle }) {
@@ -44,14 +49,15 @@ function DashboardPage({ onMenuToggle }) {
 }
 
 // Pages simples pour les autres routes
-function SimplePage({ title, onMenuToggle }) {
+function SimplePage({ title, onMenuToggle, composant }) {
   return (
     <div className="w-full p-4 lg:p-6">
       <Header onMenuToggle={onMenuToggle} />
       <h1 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">{title}</h1>
       <div className="bg-white rounded-lg p-4 lg:p-6 border border-[#76bc21]/20">
         {/* <p className="text-gray-600">Contenu de la page {title} à développer...</p> */}
-        <DecisionSecours/>
+        {/* <DecisionSecours/> */}
+        {composant}
       </div>
     </div>
   );
@@ -78,14 +84,15 @@ function App() {
             <Route path="/" element={<DashboardPage onMenuToggle={handleMenuToggle} />} />
             <Route path="/dossiers" element={<DossierPage onMenuToggle={handleMenuToggle} />} />
             <Route path="/cpp" element={<CppPage onMenuToggle={handleMenuToggle} />} />
-            <Route path="/decomptes" element={<SimplePage title="États de décompte" onMenuToggle={handleMenuToggle} />} />
-            <Route path="/decisions" element={<DecisionDecesPage onMenuToggle={handleMenuToggle} />} />
-            <Route path="/decisions-pensions" element={<DecisionDecesForm onMenuToggle={handleMenuToggle} />} />
-            <Route path="/controles" element={<ControleFinancier onMenuToggle={handleMenuToggle} />} />
-            <Route path="/secours" element={<SimplePage title="Bureau de secours" onMenuToggle={handleMenuToggle} />} />
-            <Route path="/controle-financier" element={<SimplePage title="ControleFinancier" onMenuToggle={handleMenuToggle} />} />
-            <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} />} />
-            <Route path="/déconnexion" element={<SimplePage title="Déconnexion" onMenuToggle={handleMenuToggle} />} />
+            <Route path="/decomptes" element={<SimplePage title="États de décompte" onMenuToggle={handleMenuToggle} composant={<DecomptePage/>} />} />
+            <Route path="/decisions" element={<SimplePage title={`Décisions Solde`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesPage/>}/>} />
+            <Route path="/decisions-pensions" element={<SimplePage title={`Décisions Pensions`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesForm/>}/>} />
+            {/* <Route path="/controles" element={<ControleFinancier onMenuToggle={handleMenuToggle} />} /> */}
+            <Route path="/secours" element={<SimplePage title="Bureau de secours" onMenuToggle={handleMenuToggle} composant={<DecisionSecours/>}/>} />
+            <Route path="/controle-financier" element={<SimplePage title="ControleFinancier" onMenuToggle={handleMenuToggle} composant={<FormulaireVisaDeces/>}/>} />
+            <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} composant={<ArchiverPage/>}/>} />
+            <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} composant={<ArchiverPage/>}/>} />
+            <Route path="/déconnexion" element={<SimplePage title="Déconnexion" onMenuToggle={handleMenuToggle} composant={<DeconnexionApp/>} />} />
           </Routes>
         </main>
       </div>

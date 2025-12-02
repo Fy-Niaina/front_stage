@@ -57,7 +57,7 @@ export default function FormulaireDecisionDeces() {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold">Décision d'attribution de secours au décès Soldes</h1>
+        <h1 className="text-2xl font-extrabold">Décision d'attribution de secours au décès Soldes</h1>
         <p className="text-[#76bc21]"><Link to="/decisions-pensions">Aller à Pensions</Link></p>
       </header>
 
@@ -145,13 +145,13 @@ export default function FormulaireDecisionDeces() {
           </label>
  
           <label className="flex flex-col md:col-span-2">
-            <span className="text-sm text-[#76bc21]">Nom de l'agent / Signature</span>
+            <span className="text-sm text-[#76bc21]">Nom de l'agent</span>
             <input name="agent" value={form.agent} onChange={handleChange} className="mt-1 p-2 border rounded" placeholder="Nom et fonction" />
           </label>
         </div>
 
         <div className="flex flex-wrap gap-3 justify-end mt-4">
-          <button type="submit" className="px-4 py-2 rounded-2xl bg-emerald-600 text-white">Enregistrer</button>
+          <button type="submit" className="px-4 py-2 rounded-2xl bg- text-white">Enregistrer</button>
         </div>
       </form>
 

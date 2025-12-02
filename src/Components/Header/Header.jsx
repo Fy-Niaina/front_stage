@@ -17,10 +17,10 @@ export default function Header({ onMenuToggle }) {
           {/* Logo et titre */}
           <div className="flex flex-col">
             <h1 className="text-lg lg:text-2xl font-bold text-[#76bc21]">
-              Gestion des demandes de Secours Financiers
+              Gestion des demandes de Secours aux Décès
             </h1>
             <p className="text-black text-xs lg:text-sm mt-0.5 lg:mt-1">
-              Gérez et suivez vos demandes de secours financiers efficacement
+              Gérez et suivez vos demandes de secours aux décès efficacement
             </p>
           </div>
         </div>
