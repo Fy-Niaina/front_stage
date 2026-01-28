@@ -7,8 +7,7 @@ export default function AjouterCpp({ isOpen, onClose, cessation, onSave, onSaved
   const [formData, setFormData] = useState({
     folder_id: "",
     // beneficiary: "",
-    deceased_name: "",
-    amount: "",
+    date_cessation: "",
     six_one: "",
     six_two: "",
     six_three: "",
@@ -18,7 +17,8 @@ export default function AjouterCpp({ isOpen, onClose, cessation, onSave, onSaved
     six_seven: "",
     six_eight: "",
     six_nine: "",
-    six_ten: ""
+    six_ten: "",
+    remark: ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -40,9 +40,8 @@ export default function AjouterCpp({ isOpen, onClose, cessation, onSave, onSaved
     if (cessation) {
       setFormData({
         folder_id: cessation.folder_id || "",
-        // beneficiary: cessation.beneficiary || "",
-        deceased_name: cessation.deceased_name || "",
-        amount: cessation.amount || "",
+        remark: cessation.remark || "",
+        date_cessation: cessation.date_cessation || "",
         six_one: cessation.six_one || "",
         six_two: cessation.six_two || "",
         six_three: cessation.six_three || "",
@@ -122,7 +121,18 @@ export default function AjouterCpp({ isOpen, onClose, cessation, onSave, onSaved
 
         {/* FORM */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-
+           <div>
+            <label className="text-sm font-medium">
+              Date de la cessation <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              name="date_cessation"
+              value={formData.date_cessation}
+              onChange={handleChange}
+              className="w-full mt-1 p-3 border rounded-xl"
+            />
+          </div>
           {/* Dropdown Dossier */}
           <select
             name="folder_id"
@@ -133,40 +143,20 @@ export default function AjouterCpp({ isOpen, onClose, cessation, onSave, onSaved
             <option value="">Sélectionner un dossier</option>
             {folders.map(f => (
               <option key={f.id} value={f.id}>
-                {f.matricule} – {f.beneficiary.name}
+                {f.matricule} – {f.deceased_name}
               </option>
             ))}
           </select>
 
-          {/* Beneficiary auto-rempli
-          <input
-            type="text"
-            name="beneficiary"
-            placeholder="Bénéficiaire"
-            value={formData.beneficiary.cin}
-            onChange={handleChange}
-            className="w-full border p-2 rounded bg-gray-100"
-            readOnly
-          /> */}
-
           {/* Les autres champs */}
-          <input
+          {/* <input
             type="text"
             name="deceased_name"
             placeholder="Nom du décédé"
             value={formData.deceased_name}
             onChange={handleChange}
             className="w-full border p-2 rounded"
-          />
-          <input
-            type="number"
-            name="amount"
-            placeholder="Montant"
-            value={formData.amount}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-          />
-
+          /> */}
           {[
             "six_one","six_two","six_three","six_four","six_five",
             "six_six","six_seven","six_eight","six_nine","six_ten"
@@ -183,6 +173,10 @@ export default function AjouterCpp({ isOpen, onClose, cessation, onSave, onSaved
           ))}
 
           {error && <p className="text-red-600">{error}</p>}
+          <div>
+            <label className="block text-sm font-medium mb-1">Remarque</label>
+            <textarea name="remark" value={formData.remark} onChange={handleChange} rows={2} className="w-full p-2 border border-gray-300 rounded-lg" placeholder="Observations éventuelles..." />
+          </div>
 
           <div className="flex justify-end gap-3 pt-4 border-t">
             <button type="button" onClick={onClose} className="border px-4 py-2 rounded">Annuler</button>

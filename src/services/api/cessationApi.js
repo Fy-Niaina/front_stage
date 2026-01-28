@@ -2,7 +2,7 @@ import api from '../axiosConfigation.js';
 
 export const getCessations = async () => {
   try {
-    const res = await api.get('cessation');
+    const res = await api.get('cessations');
     return res.data;
   } catch (error) {
     throw error;
@@ -11,7 +11,7 @@ export const getCessations = async () => {
 
 export const getCessationById = async (id) => {
   try {
-    const res = await api.get(`cessation/${id}`);
+    const res = await api.get(`cessations/${id}`);
     return res.data;
   } catch (error) {
     throw error;
@@ -20,7 +20,7 @@ export const getCessationById = async (id) => {
 
 export const addCessation = async (data) => {
   try {
-    const res = await api.post('cessation/add', data);
+    const res = await api.post('cessations', data);
     return res.data;
   } catch (error) {
     throw error;
@@ -29,7 +29,7 @@ export const addCessation = async (data) => {
 
 export const updateCessation = async (id, data) => {
   try {
-    const res = await api.put(`cessation/${id}`, data);
+    const res = await api.put(`cessations/${id}`, data);
     return res.data;
   } catch (error) {
     throw error;
@@ -38,7 +38,7 @@ export const updateCessation = async (id, data) => {
 
 export const deleteCessation = async (id) => {
   try {
-    const res = await api.delete(`cessation/${id}`);
+    const res = await api.delete(`cessations/${id}`);
     return res.data;
   } catch (error) {
     throw error;

@@ -42,7 +42,7 @@ export default function BeneficiaryTable() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const tableHeaders = ["ID", "N° CIN", "Identité", "Contact", "Statut", "Actions"];
+  const tableHeaders = ["ID", "N° CIN", "Identité", "Contact", "Email", "Actions"];
 
   // Détection du mode mobile
   useEffect(() => {
@@ -67,15 +67,6 @@ export default function BeneficiaryTable() {
       setError("Erreur lors de la récupération des données : " + err.message);
     } finally {
       setLoading(false);
-    }
-  };
-
-  /* ======================= HELPERS ======================== */
-  const getStatusColor = (state) => {
-    switch (state) {
-      case "Actif": return "bg-green-100 text-green-700 border-green-200";
-      case "Inactif": return "bg-red-100 text-red-700 border-red-200";
-      default: return "bg-gray-100 text-gray-600 border-gray-200";
     }
   };
 
@@ -207,9 +198,7 @@ export default function BeneficiaryTable() {
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">{b.contact}</td>
                   <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(b.state)}`}>
-                      {b.state}
-                    </span>
+                    <td className="px-6 py-4 text-sm text-gray-600">{b.email}</td>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">

@@ -4,13 +4,12 @@ import { FiX, FiSave, FiUser, FiPhone, FiMapPin, FiHash, FiMessageSquare, FiInfo
 export default function AjouterBeneficiaire({ isOpen, onClose, beneficiary, onSave }) {
   const [formData, setFormData] = useState({
     name: '',
-    firstname: '', // Ajouté
+    firstname: '', 
     cin: '',
-    sexe: 'Femme', // Ajouté (défaut selon 'in:Femme,Homme')
+    sexe: 'Femme',
     contact: '',
     adresse: '',
-    state: 'Actif', // Corrigé (était statut)
-    remark: '' // Ajouté
+    remark: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -29,7 +28,6 @@ export default function AjouterBeneficiaire({ isOpen, onClose, beneficiary, onSa
           sexe: 'Femme',
           contact: '',
           adresse: '',
-          state: 'Actif',
           remark: ''
         });
       }
@@ -52,10 +50,6 @@ export default function AjouterBeneficiaire({ isOpen, onClose, beneficiary, onSa
       newErrors.contact = 'Le contact est requis';
     } else if (formData.contact.length !== 10) {
       newErrors.contact = 'Le contact doit avoir 10 chiffres';
-    }
-
-    if (!['Actif', 'Inactif'].includes(formData.state)) {
-        newErrors.state = 'Statut invalide';
     }
 
     setErrors(newErrors);
@@ -134,15 +128,6 @@ export default function AjouterBeneficiaire({ isOpen, onClose, beneficiary, onSa
               <label className="block text-sm font-medium mb-1">Contact * (10 chiffres)</label>
               <input type="text" name="contact" value={formData.contact} onChange={handleChange} maxLength={10}
                 className={`w-full p-2 border rounded-lg ${errors.contact ? 'border-red-500' : 'border-gray-300'}`} />
-            </div>
-
-            {/* Statut (State) */}
-            <div>
-              <label className="block text-sm font-medium mb-1">État *</label>
-              <select name="state" value={formData.state} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-lg">
-                <option value="Actif">Actif</option>
-                <option value="Inactif">Inactif</option>
-              </select>
             </div>
           </div>
 

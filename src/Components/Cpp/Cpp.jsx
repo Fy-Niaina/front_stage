@@ -56,9 +56,9 @@ const handleSaveCpp = async (fields) => {
   const tableHeaders = [
     "ID",
     "Dossier",
-    "Bénéficiaire",
-    "Décédé",
+    "Date de cessation",
     "Montant",
+    "Status",
     "Actions"
   ];
 
@@ -90,9 +90,9 @@ const handleSaveCpp = async (fields) => {
 
   /* ======================= FILTER + PAGINATION ======================= */
   const filteredCessations = cessations.filter(c =>
-    c.folder_id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.beneficiary?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.deceased_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    // c.folder.id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    // c.beneficiary?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    // c.deceased_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     c.id?.toString().includes(searchTerm)
   );
 
@@ -119,8 +119,8 @@ const handleSaveCpp = async (fields) => {
       <div className="flex justify-between items-start mb-2">
         <div>
           <span className="text-xs font-mono text-gray-400">#{c.id}</span>
-          <h3 className="font-bold text-gray-900">{c.folder_id}</h3>
-          <p className="text-sm text-gray-600">{c.beneficiary}</p>
+          <h3 className="font-bold text-gray-900">{c.folder.id}</h3>
+          <p className="text-sm text-gray-600">{c.folder.matricule}</p>
         </div>
         <div className="text-sm font-bold text-[#76bc21]">
           {c.amount} Ar
@@ -128,7 +128,7 @@ const handleSaveCpp = async (fields) => {
       </div>
 
       <p className="text-sm text-gray-500 mb-3">
-        Décédé : {c.deceased_name}
+        {/* Décédé : {c.deceased_name} */}
       </p>
 
       <div className="flex gap-2 border-t pt-2">
@@ -207,10 +207,10 @@ const handleSaveCpp = async (fields) => {
               {currentItems.map(c => (
                 <tr key={c.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 text-sm font-mono text-gray-400">#{c.id}</td>
-                  <td className="px-6 py-4 font-medium">{c.folder_id}</td>
-                  <td className="px-6 py-4">{c.beneficiary}</td>
-                  <td className="px-6 py-4">{c.deceased_name}</td>
+                  <td className="px-6 py-4 font-medium">{c.folder.matricule}</td>
+                  <td className="px-6 py-4">{c.date_cessation}</td>
                   <td className="px-6 py-4 font-bold text-[#76bc21]">{c.amount} Ar</td>
+                  <td className="px-6 py-4">{c.folder.status}</td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
                       <button
@@ -270,7 +270,7 @@ const handleSaveCpp = async (fields) => {
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleConfirmDelete}
         title="Supprimer définitivement ?"
-        message={`Vous allez supprimer la cessation du dossier ${cessationToDelete?.folder_id}. Cette action est irréversible.`}
+        message={`Vous allez supprimer la cessation du dossier ${cessationToDelete?.folder.matricule}. Cette action est irréversible.`}
         type="danger"
       />
     </div>

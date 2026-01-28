@@ -20,7 +20,7 @@ export const getBeneficiaryById = async (id) => {
 
 export const addBeneficiary = async (data) => {
   try {
-    const res = await api.post('beneficiaires/add', data);
+    const res = await api.post('beneficiaires', data);
     return res.data;
   } catch (error) {
     throw error;

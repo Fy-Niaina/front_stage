@@ -84,7 +84,7 @@ export default function DossierPage() {
     f.matricule?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     f.beneficiary?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     f.beneficiary?.firstname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    f.folder_state?.toLowerCase().includes(searchTerm.toLowerCase())
+    f.status?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredFolders.length / itemsPerPage);
@@ -113,8 +113,8 @@ export default function DossierPage() {
           <h3 className="font-bold text-gray-900 uppercase">{f.matricule}</h3>
           <p className="text-sm text-gray-600">{f.beneficiary?.name} {f.beneficiary?.firstname}</p>
         </div>
-        <span className={`px-2 py-1 rounded-full text-[10px] font-bold border ${getStatusColor(f.folder_state)}`}>
-          {f.folder_state}
+        <span className={`px-2 py-1 rounded-full text-[10px] font-bold border ${getStatusColor(f.status)}`}>
+          {f.status}
         </span>
       </div>
       <div className="text-sm text-gray-500 mb-3">
@@ -190,12 +190,12 @@ export default function DossierPage() {
                   <td className="px-6 py-4 text-sm font-mono text-gray-400">#{f.id}</td>
                   <td className="px-6 py-4 text-sm font-medium">{f.matricule}</td>
                   <td className="px-6 py-4">
-                    {f.beneficiary?.name} {f.beneficiary?.firstname}
+                    {f.beneficiaires?.length} beneficiaires
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">{f.upload_date}</td>
                   <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(f.folder_state)}`}>
-                      {f.folder_state}
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(f.status)}`}>
+                      {f.status}
                     </span>
                   </td>
                   <td className="px-6 py-4">

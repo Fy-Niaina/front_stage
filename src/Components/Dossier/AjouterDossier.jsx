@@ -11,8 +11,13 @@ export default function AjouterDossier({ isOpen, onClose, dossier, onSaved }) {
   const [formData, setFormData] = useState({
     matricule: "",
     upload_date: "",
-    beneficiary_id: "",
-    folder_state: "Actif",
+    deceased_poste: "",
+    deceased_cin: "",
+    deceased_job: "",
+    deceased_pension: "",
+    deceased_name: "",
+    date_death: "",
+    status: "en_cours",
     remark: ""
   });
 
@@ -21,9 +26,14 @@ export default function AjouterDossier({ isOpen, onClose, dossier, onSaved }) {
     if (dossier) {
       setFormData({
         matricule: dossier.matricule || "",
+        deceased_pension: dossier.deceased_pension || "",
+        deceased_job: dossier.deceased_job || "",
+        deceased_cin: dossier.deceased_cin || "",
+        deceased_poste: dossier.deceased_poste || "",
+        deceased_name: dossier.deceased_name || "",
         upload_date: dossier.upload_date || "",
-        beneficiary_id: dossier.beneficiary_id || "",
-        folder_state: dossier.folder_state || "Actif",
+        date_death: dossier.date_death || "",
+        status: dossier.status || "en_cours",
         remark: dossier.remark || ""
       });
     }
@@ -51,7 +61,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   setError(null);
 
-  if (!formData.matricule || !formData.upload_date || !formData.beneficiary_id) {
+  if (!formData.matricule || !formData.upload_date || !formData.date_death) {
     setError("Veuillez remplir tous les champs obligatoires");
     return;
   }
@@ -61,8 +71,13 @@ const handleSubmit = async (e) => {
     const dataToSend = {
       matricule: formData.matricule,
       upload_date: formData.upload_date,
-      beneficiary_id: formData.beneficiary_id,
-      folder_state: formData.folder_state,
+      date_death: formData.date_death,
+      deceased_job: formData.deceased_job,
+      deceased_cin: formData.deceased_cin,
+      deceased_pension: formData.deceased_pension,
+      deceased_poste: formData.deceased_poste,
+      deceased_name: formData.deceased_name,
+      status: formData.status,
       remark: formData.remark
     };
 
@@ -135,40 +150,73 @@ const handleSubmit = async (e) => {
               className="w-full mt-1 p-3 border rounded-xl"
             />
           </div>
-
-          {/* BENEFICIAIRE */}
-          <div>
+           <div>
             <label className="text-sm font-medium">
-              Bénéficiaire <span className="text-red-500">*</span>
+              Date du décès <span className="text-red-500">*</span>
             </label>
-            <select
-              name="beneficiary_id"
-              value={formData.beneficiary_id}
+            <input
+              type="date"
+              name="date_death"
+              value={formData.date_death}
               onChange={handleChange}
               className="w-full mt-1 p-3 border rounded-xl"
-            >
-              <option value="">-- Sélectionner --</option>
-              {beneficiaries.map((b) => (
-                <option key={b.id} value={b.id}>
-                  {b.name} {b.firstname} ({b.cin})
-                </option>
-              ))}
-            </select>
+            />
           </div>
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Nom */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Nom du défunt*</label>
+              <input type="text" name="deceased_name" value={formData.deceased_name} onChange={handleChange} 
+                className={`w-full p-2 border rounded-lg`} />
+              {/* {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>} */}
+            </div>
 
+            {/* Prénom */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Travail du défunt</label>
+              <input type="text" name="deceased_job" value={formData.deceased_job} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-lg" />
+            </div>
+
+            {/* deceased_poste */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Poste du défunt *</label>
+              <input type="text" name="deceased_poste" value={formData.deceased_poste} onChange={handleChange} maxLength={12}
+                className={`w-full p-2 border rounded-lg`} />
+            </div>
+
+           {/* deceased_poste */}
+            <div>
+              <label className="block text-sm font-medium mb-1">CIN du défunt*</label>
+              <input type="text" name="deceased_cin" value={formData.deceased_cin} onChange={handleChange} maxLength={12}
+                className={`w-full p-2 border rounded-lg`} />
+            </div>
+          </div>
           {/* ETAT */}
-          <div>
-            <label className="text-sm font-medium">État du dossier</label>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Nom */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Pension du défunt*</label>
+              <input type="text" name="deceased_pension" value={formData.deceased_pension} onChange={handleChange} 
+                className={`w-full p-2 border rounded-lg`} />
+              {/* {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>} */}
+            </div>
+
+            {/* Prénom */}
+        <div>
+            <label className="block text-sm font-medium mb-1">État du dossier</label>
             <select
-              name="folder_state"
-              value={formData.folder_state}
+              name="status"
+              value={formData.status}
               onChange={handleChange}
-              className="w-full mt-1 p-3 border rounded-xl"
+            className={`w-full p-2 border rounded-lg`}
             >
-              <option value="Actif">Actif</option>
-              <option value="Inactif">Inactif</option>
+              <option value="valide">Validé</option>
+              <option value="en_cours">En cours</option>
+              <option value="rejete">Rejété</option>
             </select>
           </div>
+          </div>
+         
 
           {/* REMARQUE */}
           <div>
