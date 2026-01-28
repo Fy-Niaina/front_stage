@@ -20,7 +20,25 @@ export const getCessationById = async (id) => {
 
 export const addCessation = async (data) => {
   try {
-    const res = await api.post('cessation', data);
+    const res = await api.post('cessation/add', data);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateCessation = async (id, data) => {
+  try {
+    const res = await api.put(`cessation/${id}`, data);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCessation = async (id) => {
+  try {
+    const res = await api.delete(`cessation/${id}`);
     return res.data;
   } catch (error) {
     throw error;

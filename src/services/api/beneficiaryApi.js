@@ -2,7 +2,7 @@ import api from '../axiosConfigation.js';
 
 export const getBeneficiaries = async () => {
   try {
-    const res = await api.get('beneficiary');
+    const res = await api.get('beneficiaires');
     return res.data;
   } catch (error) {
     throw error;
@@ -11,7 +11,7 @@ export const getBeneficiaries = async () => {
 
 export const getBeneficiaryById = async (id) => {
   try {
-    const res = await api.get(`beneficiary/${id}`);
+    const res = await api.get(`beneficiaires/${id}`);
     return res.data;
   } catch (error) {
     throw error;
@@ -20,7 +20,7 @@ export const getBeneficiaryById = async (id) => {
 
 export const addBeneficiary = async (data) => {
   try {
-    const res = await api.post('beneficiary/add', data);
+    const res = await api.post('beneficiaires/add', data);
     return res.data;
   } catch (error) {
     throw error;
@@ -29,7 +29,7 @@ export const addBeneficiary = async (data) => {
 
 export const updateBeneficiary = async (id, data) => {
   try {
-    const res = await api.put(`beneficiary/edit/${id}`, data);
+    const res = await api.put(`beneficiaires/${id}`, data);
     return res.data;
   } catch (error) {
     throw error;
@@ -38,7 +38,7 @@ export const updateBeneficiary = async (id, data) => {
 
 export const deleteBeneficiary = async (id) => {
   try {
-    const res = await api.delete(`beneficiary/${id}`);
+    const res = await api.delete(`beneficiaires/${id}`);
     return res.data;
   } catch (error) {
     throw error;

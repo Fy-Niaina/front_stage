@@ -6,7 +6,6 @@ import StatCard from './Components/StatCard/StatCard';
 import BeneficiaryTable from './Components/BeneficiaryTable/BeneficiaryTable';
 import SideBar from "./Components/SideBar/SideBar";
 import DossierPage from './Components/Dossier/Dossier';
-import CppPage from './Components/Cpp/Cpp'; // Import de la page CPP
 import DecisionDecesPage from './Components/ProjetDecision/Solde';
 import DecisionDecesForm from './Components/ProjetDecision/Pension';
 import { statsData } from './Components/Data/Data';
@@ -17,6 +16,7 @@ import FormulaireDecisionDeces from './Components/ProjetDecision/Solde';
 import ArchiverPage from './Components/Archive/Archive';
 import DeconnexionApp from './Components/Deconnexion/Deconnexion';
 import DecomptePage from './Components/Decompte/Decompte';
+import CessationTable from './Components/Cpp/Cpp';
 
 // Page Dashboard
 function DashboardPage({ onMenuToggle }) {
@@ -83,7 +83,7 @@ function App() {
           <Routes>
             <Route path="/" element={<DashboardPage onMenuToggle={handleMenuToggle} />} />
             <Route path="/dossiers" element={<DossierPage onMenuToggle={handleMenuToggle} />} />
-            <Route path="/cpp" element={<CppPage onMenuToggle={handleMenuToggle} />} />
+            <Route path="/cpp" element={<CessationTable onMenuToggle={handleMenuToggle} />} />
             <Route path="/decomptes" element={<SimplePage title="États de décompte" onMenuToggle={handleMenuToggle} composant={<DecomptePage/>} />} />
             <Route path="/decisions" element={<SimplePage title={`Décisions Solde`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesPage/>}/>} />
             <Route path="/decisions-pensions" element={<SimplePage title={`Décisions Pensions`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesForm/>}/>} />
