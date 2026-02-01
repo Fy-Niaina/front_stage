@@ -41,9 +41,9 @@ export default function CessationTable() {
   const [error, setError] = useState(null);
   const [selectedCpp, setSelectedCpp] = useState(null);
   
-  const handleMenuToggle = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  // const handleMenuToggle = () => {
+  //   setIsMobileMenuOpen(!isMobileMenuOpen);
+  // };
 const handleSaveCpp = async (fields) => {
   try {
     if (editingCessation) {
@@ -155,7 +155,9 @@ const handleSaveCpp = async (fields) => {
   /* ======================= RENDER ======================= */
   return (
     <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
-        <Header onMenuToggle={handleMenuToggle} />
+        <Header
+        //  onMenuToggle={handleMenuToggle}
+          />
       {/* HEADER */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
