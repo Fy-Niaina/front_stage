@@ -262,16 +262,16 @@ export default function VoirDossier() {
               <div className="bg-gray-50 p-4 rounded-xl">
                 <h4 className="font-semibold text-gray-700 mb-4">Détails des montants</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                  <AmountBox label="6.1" value={dossier.cessation.six_one} />
-                  <AmountBox label="6.2" value={dossier.cessation.six_two} />
-                  <AmountBox label="6.3" value={dossier.cessation.six_three} />
-                  <AmountBox label="6.4" value={dossier.cessation.six_four} />
-                  <AmountBox label="6.5" value={dossier.cessation.six_five} />
-                  <AmountBox label="6.6" value={dossier.cessation.six_six} />
-                  <AmountBox label="6.7" value={dossier.cessation.six_seven} />
-                  <AmountBox label="6.8" value={dossier.cessation.six_eight} />
-                  <AmountBox label="6.9" value={dossier.cessation.six_nine} />
-                  <AmountBox label="6.10" value={dossier.cessation.six_ten} />
+                  <AmountBox label="601" value={dossier.cessation.six_one} />
+                  <AmountBox label="602" value={dossier.cessation.six_two} />
+                  <AmountBox label="603" value={dossier.cessation.six_three} />
+                  <AmountBox label="604" value={dossier.cessation.six_four} />
+                  <AmountBox label="605" value={dossier.cessation.six_five} />
+                  <AmountBox label="606" value={dossier.cessation.six_six} />
+                  <AmountBox label="607" value={dossier.cessation.six_seven} />
+                  <AmountBox label="608" value={dossier.cessation.six_eight} />
+                  <AmountBox label="609" value={dossier.cessation.six_nine} />
+                  <AmountBox label="610" value={dossier.cessation.six_ten} />
                 </div>
               </div>
 
