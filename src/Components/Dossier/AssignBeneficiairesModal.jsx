@@ -42,9 +42,7 @@ export default function AssignBeneficiairesModal({
   const handleSave = async () => {
     setLoading(true);
     try {
-      await assignBeneficiaires(folderId, {
-        beneficiaires: selected
-      });
+      await assignBeneficiaires(folderId, selected);
       onSaved();
       onClose();
     } finally {
