@@ -89,11 +89,11 @@ function App() {
             <Route path="/dossiers/:id" element={<VoirDossier />} />
             <Route path="/cpp" element={<CessationTable onMenuToggle={handleMenuToggle} />} />
             <Route path="/decomptes" element={<SimplePage title="États de décompte" onMenuToggle={handleMenuToggle} composant={<DecomptePage/>} />} />
-            <Route path="/projet-decision" element={<SimplePage title="Projet de décision" onMenuToggle={handleMenuToggle} composant={<DecisionPage/>} />} />
+            <Route path="/projet-decision" element={<SimplePage onMenuToggle={handleMenuToggle} composant={<DecisionPage/>} />} />
             <Route path="/decisions" element={<SimplePage title={`Décisions Solde`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesPage/>}/>} />
             <Route path="/decisions-pensions" element={<SimplePage title={`Décisions Pensions`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesForm/>}/>} />
             {/* <Route path="/controles" element={<ControleFinancier onMenuToggle={handleMenuToggle} />} /> */}
-            <Route path="/secours" element={<SimplePage title="Bureau de secours" onMenuToggle={handleMenuToggle} composant={<SecoursPage/>}/>} />
+            <Route path="/secours" element={<SimplePage onMenuToggle={handleMenuToggle} composant={<SecoursPage/>}/>} />
             <Route path="/controle-financier" element={<SimplePage title="ControleFinancier" onMenuToggle={handleMenuToggle} composant={<FormulaireVisaDeces/>}/>} />
             <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} composant={<ArchiverPage/>}/>} />
             <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} composant={<ArchiverPage/>}/>} />

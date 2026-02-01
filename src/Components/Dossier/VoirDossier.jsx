@@ -11,6 +11,8 @@ import {
 } from "react-icons/fi";
 import { getFolderById } from "../../services/api/folderApi";
 import Header from "../Header/Header";
+import { getBeneficiaries } from "../../services/api/beneficiaryApi";
+import AssignBeneficiairesModal from "./AssignBeneficiairesModal";
 
 export default function VoirDossier() {
   const { id } = useParams();
@@ -19,6 +21,16 @@ export default function VoirDossier() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAssignModalOpen, setIsAssignModalOpen] = useState(false);
+  const [allBeneficiaires, setAllBeneficiaires] = useState([]);
+
+  useEffect(() => {
+  const fetchBeneficiaires = async () => {
+    const data = await getBeneficiaries();
+    setAllBeneficiaires(data);
+  };
+  fetchBeneficiaires();
+}, []);
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -142,6 +154,12 @@ export default function VoirDossier() {
             title={`Bénéficiaires (${dossier.beneficiaires?.length || 0})`} 
             icon={<FiUser className="text-green-600" />}
           >
+             <button
+             onClick={() => setIsAssignModalOpen(true)}
+            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg"
+            >
+        <FiUser /> Gérer
+        </button>
             {dossier.beneficiaires && dossier.beneficiaires.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {dossier.beneficiaires.map((ben, index) => (
@@ -219,7 +237,7 @@ export default function VoirDossier() {
               {dossier.decompte.fichier && (
                 <div className="mt-4">
                   <a 
-                    href={`/storage/${dossier.decompte.fichier}`} 
+                    href={`http://localhost:8000/api/decomptes/${dossier.id}/view`} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-orange-600 hover:text-orange-800 font-medium"
@@ -267,7 +285,7 @@ export default function VoirDossier() {
               {dossier.cessation.fichier && (
                 <div className="mt-4">
                   <a 
-                    href={`/storage/${dossier.cessation.fichier}`} 
+                    href={`http://localhost:8000/api/cessations/${dossier.id}/view`} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-red-600 hover:text-red-800 font-medium"
@@ -280,6 +298,14 @@ export default function VoirDossier() {
           </div>
         )}
       </div>
+      <AssignBeneficiairesModal
+  isOpen={isAssignModalOpen}
+  onClose={() => setIsAssignModalOpen(false)}
+  folderId={dossier.id}
+  allBeneficiaires={allBeneficiaires}
+  currentBeneficiaires={dossier.beneficiaires}
+  onSaved={fetchDossierDetails}
+/>
     </div>
   );
 }

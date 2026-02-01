@@ -38,7 +38,7 @@ export const updateDecision = async (id, data) => {
 
 export const deleteDecision = async (id) => {
   try {
-    const res = await api.delete(`decision/${id}`);
+    const res = await api.delete(`decisions/${id}`);
     return res.data;
   } catch (error) {
     throw error;
