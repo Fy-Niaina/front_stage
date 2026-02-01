@@ -8,6 +8,7 @@ import {
   FiDollarSign,
   FiEdit,
   FiDownload,
+  FiShield,
 } from "react-icons/fi";
 import { getFolderById } from "../../services/api/folderApi";
 import Header from "../Header/Header";
@@ -297,6 +298,31 @@ export default function VoirDossier() {
             </Section>
           </div>
         )}
+        {dossier.secours && (
+  <div className="mt-6">
+    <Section title="Secours Décès" icon={<FiShield className="text-teal-600" />}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <InfoRow label="N° de Secours" value={dossier.secours.numero_secours} highlight />
+          <InfoRow label="Enregistré le" value={formatDate(dossier.secours.created_at)} />
+        </div>
+        
+        <div className="flex items-center md:justify-end">
+          {dossier.secours.fichier && (
+            <a 
+              href={`http://localhost:8000/api/secours/${dossier.id}/view`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-teal-50 text-teal-700 px-6 py-3 rounded-xl border border-teal-200 hover:bg-teal-100 transition-all font-bold"
+            >
+              <FiDownload size={20} /> Télécharger le Certificat de Secours
+            </a>
+          )}
+        </div>
+      </div>
+    </Section>
+  </div>
+)}
       </div>
       <AssignBeneficiairesModal
   isOpen={isAssignModalOpen}
