@@ -17,6 +17,8 @@ import AjouterDossier from "./AjouterDossier";
 import { getFolders, addFolder, deleteFolder } from "../../services/api/folderApi";
 import ConfirmationModal from "../BeneficiaryTable/ConfirmationModal";
 import Header from "../Header/Header";
+import VoirDossier from "./VoirDossier";
+import { useNavigate } from "react-router-dom";
 
 export default function DossierPage() {
   const [folders, setFolders] = useState([]);
@@ -24,7 +26,7 @@ export default function DossierPage() {
   const [isMobileView, setIsMobileView] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
   // Modales
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
@@ -200,7 +202,7 @@ export default function DossierPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
-                      <button onClick={() => { setViewingFolder(f); setIsViewModalOpen(true); }} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"><FiEye /></button>
+                      <button onClick={() => navigate(`/dossiers/${f.id}`)}  className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"><FiEye /></button>
                       <button onClick={() => { setEditingFolder(f); setIsModalOpen(true); }} className="p-2 text-green-700 hover:bg-green-50 rounded-lg"><FiEdit /></button>
                       <button onClick={() => { setFolderToDelete(f); setIsDeleteModalOpen(true); }} className="p-2 text-red-600 hover:bg-red-50 rounded-lg"><FiTrash2 /></button>
                     </div>
@@ -228,12 +230,6 @@ export default function DossierPage() {
         dossier={editingFolder}
         onSaved={fetchFolders}
       />
-
-      {/* <VoirDossier
-        isOpen={isViewModalOpen}
-        onClose={() => setIsViewModalOpen(false)}
-        dossier={viewingFolder}
-      />*/}
 
       <ConfirmationModal
         isOpen={isDeleteModalOpen}

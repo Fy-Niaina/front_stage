@@ -12,8 +12,8 @@ export default function SideBar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
     { name: "Dossier", icon: FiFolder, path: "/dossiers" },
     { name: "Certificat de cessation de paiement", icon: FiFileText, path: "/cpp" },
     { name: "État de décompte", icon: FiFileText, path: "/decomptes" },
-    { name: "Projet de décision", icon: FiFileText, path: "/decisions" },
-    { name: "Contrôle financier", icon: FiFileText, path: "/controle-financier" },
+    { name: "Projet de décision", icon: FiFileText, path: "/projet-decision" },
+    // { name: "Contrôle financier", icon: FiFileText, path: "/controle-financier" },
     { name: "Bureau de secours", icon: FiFolder, path: "/secours" },
     { name: "Archives", icon: FiArchive, path: "/archives" },
   ];

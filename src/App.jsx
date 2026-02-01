@@ -17,6 +17,9 @@ import ArchiverPage from './Components/Archive/Archive';
 import DeconnexionApp from './Components/Deconnexion/Deconnexion';
 import DecomptePage from './Components/Decompte/Decompte';
 import CessationTable from './Components/Cpp/Cpp';
+import DecisionPage from './Components/ProjetDecision/Decision';
+import SecoursPage from './Components/Secours/Secours';
+import VoirDossier from './Components/Dossier/VoirDossier';
 
 // Page Dashboard
 function DashboardPage({ onMenuToggle }) {
@@ -83,12 +86,14 @@ function App() {
           <Routes>
             <Route path="/" element={<DashboardPage onMenuToggle={handleMenuToggle} />} />
             <Route path="/dossiers" element={<DossierPage onMenuToggle={handleMenuToggle} />} />
+            <Route path="/dossiers/:id" element={<VoirDossier />} />
             <Route path="/cpp" element={<CessationTable onMenuToggle={handleMenuToggle} />} />
             <Route path="/decomptes" element={<SimplePage title="États de décompte" onMenuToggle={handleMenuToggle} composant={<DecomptePage/>} />} />
+            <Route path="/projet-decision" element={<SimplePage title="Projet de décision" onMenuToggle={handleMenuToggle} composant={<DecisionPage/>} />} />
             <Route path="/decisions" element={<SimplePage title={`Décisions Solde`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesPage/>}/>} />
             <Route path="/decisions-pensions" element={<SimplePage title={`Décisions Pensions`} onMenuToggle={handleMenuToggle} composant={<DecisionDecesForm/>}/>} />
             {/* <Route path="/controles" element={<ControleFinancier onMenuToggle={handleMenuToggle} />} /> */}
-            <Route path="/secours" element={<SimplePage title="Bureau de secours" onMenuToggle={handleMenuToggle} composant={<DecisionSecours/>}/>} />
+            <Route path="/secours" element={<SimplePage title="Bureau de secours" onMenuToggle={handleMenuToggle} composant={<SecoursPage/>}/>} />
             <Route path="/controle-financier" element={<SimplePage title="ControleFinancier" onMenuToggle={handleMenuToggle} composant={<FormulaireVisaDeces/>}/>} />
             <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} composant={<ArchiverPage/>}/>} />
             <Route path="/archives" element={<SimplePage title="Archives" onMenuToggle={handleMenuToggle} composant={<ArchiverPage/>}/>} />

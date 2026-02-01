@@ -8,18 +8,15 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 
-import AjouterCpp from "./AjouterCpp";
+// import AjouterCpp from "./AjouterCpp";
 import ConfirmationModal from "../BeneficiaryTable/ConfirmationModal";
 
 import {
-  getCessations,
-  deleteCessation,
-  addCessation,
-  updateCessation
-} from "../../services/api/cessationApi";
-import Header from "../Header/Header";
+  getDecisions,
+  deleteDecision
+} from "../../services/api/decisionApi";
 
-export default function CessationTable() {
+export default function SecoursPage() {
 
   /* ======================= DATA ======================= */
   const [cessations, setCessations] = useState([]);
@@ -39,29 +36,13 @@ export default function CessationTable() {
   const [isMobileView, setIsMobileView] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedCpp, setSelectedCpp] = useState(null);
-  
-  const handleMenuToggle = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-const handleSaveCpp = async (fields) => {
-  try {
-    if (editingCessation) {
-      await updateCessation(editingCessation.id, fields);
-    } else {
-      await addCessation(fields);
-    }
-    await fetchCessations();  
-  } catch (err) {
-    console.error(err);
-  }
-};
 
   const tableHeaders = [
     "ID",
     "Dossier",
-    "Date de cessation",
-    "Montant",
+    "Numéro visa",
+    "Numéro décision",
+    "Agent",
     "Status",
     "Actions"
   ];
@@ -83,10 +64,10 @@ const handleSaveCpp = async (fields) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await getCessations();
+      const data = await getDecisions();
       setCessations(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError("Erreur lors du chargement des cessations");
+      setError("Erreur lors du chargement des decisions");
     } finally {
       setLoading(false);
     }
@@ -109,7 +90,7 @@ const handleSaveCpp = async (fields) => {
   /* ======================= ACTIONS ======================= */
   const handleConfirmDelete = async () => {
     try {
-      await deleteCessation(cessationToDelete.id);
+      await deleteDecision(cessationToDelete.id);
       setCessations(prev => prev.filter(c => c.id !== cessationToDelete.id));
       setIsDeleteModalOpen(false);
     } catch {
@@ -127,7 +108,7 @@ const handleSaveCpp = async (fields) => {
           <p className="text-sm text-gray-600">{c.folder.matricule}</p>
         </div>
         <div className="text-sm font-bold text-[#76bc21]">
-          {c.amount} Ar
+          {c.decision_agent}
         </div>
       </div>
 
@@ -155,21 +136,6 @@ const handleSaveCpp = async (fields) => {
   /* ======================= RENDER ======================= */
   return (
     <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
-        <Header onMenuToggle={handleMenuToggle} />
-      {/* HEADER */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Gestion des cessations</h1>
-          <p className="text-gray-500 text-sm">{filteredCessations.length} au total</p>
-        </div>
-        <button
-          onClick={() => { setEditingCessation(null); setIsModalOpen(true); }}
-          className="flex items-center gap-2 bg-[#76bc21] text-white px-6 py-3 rounded-xl shadow-lg"
-        >
-          <FiPlus /> Ajouter une cessation
-        </button>
-      </div>
-
       {/* SEARCH */}
       <div className="relative mb-6">
         <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -212,8 +178,9 @@ const handleSaveCpp = async (fields) => {
                 <tr key={c.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 text-sm font-mono text-gray-400">#{c.id}</td>
                   <td className="px-6 py-4 font-medium">{c.folder.matricule}</td>
-                  <td className="px-6 py-4">{c.date_cessation}</td>
-                  <td className="px-6 py-4 font-bold text-[#76bc21]">{c.amount} Ar</td>
+                  <td className="px-6 py-4">{c.numero_visa}</td>
+                  <td className="px-6 py-4">{c.numero_decision}</td>
+                  <td className="px-6 py-4 font-bold text-[#76bc21]">{c.decision_agent}</td>
                   <td className="px-6 py-4">{c.folder.status}</td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
@@ -261,14 +228,6 @@ const handleSaveCpp = async (fields) => {
         </div>
       )}
 
-      <AjouterCpp
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        cessation={editingCessation}
-        onSave={handleSaveCpp}
-        onSaved={fetchCessations}
-      />
- 
       <ConfirmationModal
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}

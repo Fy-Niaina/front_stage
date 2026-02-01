@@ -44,3 +44,11 @@ export const deleteFolder = async (id) => {
     throw error;
   }
 };
+
+export const assignBeneficiaires = async (folderId, beneficiaires) => {
+  const res = await api.post(
+    `/folders/${folderId}/assign-beneficiaires`,
+    { beneficiaires }
+  );
+  return res.data;
+};
